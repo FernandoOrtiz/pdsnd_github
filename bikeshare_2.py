@@ -161,25 +161,25 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-def display_data(df):
+def display_mult_data(df):
     """Displays 5 rows of data every time the user prompts for it """
     
     view_data = input('Would you like to display 5 rows of individual data? Yes/No\n').lower()
-    loc_start = 0
+    loc_val_start = 0
     while(view_data == 'yes'):
-        if(loc_start == 0):
-            print(df.iloc[loc_start:loc_start + 5])
-        elif((loc_start + 5) <= len(df.index)):
-            print(df.iloc[loc_start:loc_start + 5])
+        if(loc_val_start == 0):
+            print(df.iloc[loc_val_start:loc_val_start + 5])
+        elif((loc_val_start + 5) <= len(df.index)):
+            print(df.iloc[loc_val_start:loc_val_start + 5])
         else:
             print(df.iloc[len(df.index) - 5:len(df.index)])
             print('***This is the end of the dataset*** If you wish to continue it will start from the beginning.')
             
         view_data = input('Would you like to continue and display 5 more values? Yes/No\n').lower()
-        if(view_data == 'yes' and (loc_start + 5) > len(df.index)):
-            loc_start = 0
-        elif(view_data == 'yes' and (loc_start + 5) < len(df.index)):
-            loc_start = loc_start + 5
+        if(view_data == 'yes' and (loc_val_start + 5) > len(df.index)):
+            loc_val_start = 0
+        elif(view_data == 'yes' and (loc_val_start + 5) < len(df.index)):
+            loc_val_start = loc_val_start + 5
             
             
 
@@ -192,7 +192,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        display_data(df)
+        display_mult_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
