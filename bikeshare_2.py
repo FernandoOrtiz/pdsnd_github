@@ -5,6 +5,8 @@ import numpy as np
 """
 Project US Bikeshare Data, project analyzes data from three states and displays analysis data.
 """
+
+#relevant data needed for analysis
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -32,6 +34,7 @@ def get_filters():
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
         day = input('What day filter do you wish to apply? (All, Monday, Tuesday...)\n').lower()
 
+        #Verify if user input is valid
         if(city in map(str.lower, available_city) and day in map(str.lower, available_days) and month in map(str.lower, available_months)):
             print('-'*40)
             return city, month, day
@@ -62,6 +65,7 @@ def load_data(city, month, day):
     df['Hour'] = df['Start Time'].dt.hour
     df['Minutes'] = df['Start Time'].dt.minute
     
+    #verify if All option was selected
     if(month != 'all'):
         lower_months = [item.lower() for item in available_months]
         df = df[df['Month'] == lower_months.index(month)]
